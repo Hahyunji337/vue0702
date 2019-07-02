@@ -18,5 +18,6 @@ public interface CustomerRepository extends CrudRepository<Customer,Long>{//DTO�
     //내장된 숫자가 아니라 진짜 아이디로 찾는거
     //리턴타입은 엔티티로 고정
     //여러개일때는 엔티티타입의 콜렉션
+    //대소문자 구분하므로 주의
     public Customer findByCustomerIdAndPassword(String customerId, String password);
 }
