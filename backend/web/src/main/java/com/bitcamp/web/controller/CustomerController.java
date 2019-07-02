@@ -157,13 +157,13 @@ public class CustomerController {
         // System.out.println(dto.getCustomerId().toString());
         //리턴에서 dto.get~~하면 찍어볼 수 없으므로 이렇게
         //서비스에 있는거 전부 람다처리 가능
-        ISupplier fx = ()->{//왜 서플라이로??????
+        ISupplier fx = ()->{//오토와이어드 걸면 안됨 메소드 밖에서 상태를 keep하면 안된다
             return repo.findByCustomerIdAndPassword(dto.getCustomerId(), dto.getPassword());   
         };
         //함수형 프로그래밍의 특징 - 재활용 하지않겠다
         
         // return (CustomerDTO)fx.apply(dto); //이렇게 하면 강제 형변환이 일어나서 안됨
-        return modelMapper.map(fx.get(),CustomerDTO.class); //요걸 하면 서비스를 다 날려버려도 됨 
+        return modelMapper.map(fx.get(),CustomerDTO.class); //요걸 하면 서비스를 다 날려버려도 됨 //어디 할당하지말고 이렇게 바로 리턴 
         //이렇게 코딩하는걸 end to end라고 한다 끝까지 다 배달해버리는것
         // return null;
     }
